@@ -1,13 +1,13 @@
 """
-Journey class serializor
+Trip class serializor
 """
 
 import json
 
-def journeys(journeys):
+def trips(trips):
     data = []
 
-    for j in journeys:
+    for j in trips:
         d = {
             'start': j[0],
             'end': j[1],
@@ -15,7 +15,7 @@ def journeys(journeys):
             'start_long': j[3],
             'end_lat': j[4],
             'end_long': j[5],
-            'comment': j[6],
+            'contact': j[6],
             'start_date': j[7]}
 
         if len(j) == 9:

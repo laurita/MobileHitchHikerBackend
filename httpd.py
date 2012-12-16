@@ -12,29 +12,34 @@ app = Flask(__name__)
 
 @app.before_request
 def before_request():
-    g.j = storage.Journey(config.db_name)
+    g.t = storage.Trip(config.db_name)
 
 @app.teardown_request
 def teardown_request(req):
     if hasattr(g, 'j'):
-        g.j.close()
+        g.t.close()
 
 @app.route('/')
 def api_index():
     return 'Welcome to MobileHitchHiker Backend!'
 
-@app.route('/journeys')
-def api_journeys():
+@app.route('/trips')
+def api_trips():
     if ('lat' in request.args) and ('long' in request.args):
-        params = (float(request.args['lat']), float(request.args['long']),)
-        data = g.j.find_closest(params)
+        location = (float(request.args['lat']), float(request.args['long']),)
+        if ('date' in request.args):
+            date = request.args['date']
+        else:
+            date = 0
+        data = g.t.find_closest(location, date)
     else:
-        data = g.j.all()
-    return Response(ser.journeys(data), mimetype='application/json')
+        data = g.t.all()
+    return Response(ser.trips(data), mimetype='application/json')
 
-@app.route('/journeys', methods=['POST'])
-def api_store_journey():
-    g.j.store(request.json)
+@app.route('/trips', methods=['POST'])
+def api_store_trip():
+    print request.json
+    g.t.store(request.json)
     return 'ok'
 
 if __name__ == '__main__':

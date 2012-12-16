@@ -22,7 +22,7 @@ python httpd.py
 ## Example
 
 ```
-curl -H "Content-Type: application/json" -d @sample_trip.json http://localhost:5000/journeys
+curl -H "Content-Type: application/json" -d @sample_trip.json http://localhost:5000/trips
 ```
 
 [1]: https://github.com/laurita/MobileHitchHiker
