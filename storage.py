@@ -11,8 +11,10 @@ class Trip:
         Return list of closest trips.
         TODO: add finish to comparision
         """
+        print location
         trips = map(
-            lambda x: tuple(list(x) + [distance(x[2:4], location)]),
+            lambda x: tuple(list(x) + [distance(x[2:4], location[0:2]) + \
+                distance(x[4:6], location[2:4])]),
             self.all(date))
 
         return sorted(trips, key=lambda x: x[8])[:count]

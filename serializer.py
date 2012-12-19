@@ -15,8 +15,8 @@ def trips(trips):
             'start_long': j[3],
             'end_lat': j[4],
             'end_long': j[5],
-            'contact': j[6],
-            'start_date': j[7]}
+            'contact': j[7],
+            'start_date': j[6]}
 
         if len(j) == 9:
             d['distance'] = j[8]

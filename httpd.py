@@ -25,8 +25,13 @@ def api_index():
 
 @app.route('/trips')
 def api_trips():
-    if ('lat' in request.args) and ('long' in request.args):
-        location = (float(request.args['lat']), float(request.args['long']),)
+    if ('start_lat' in request.args) and ('start_long' in request.args) \
+        and ('end_lat' in request.args) and ('end_long' in request.args):
+        location = (
+            float(request.args['start_lat']),
+            float(request.args['start_long']),   
+            float(request.args['end_lat']),
+            float(request.args['end_long']),)   
         if ('date' in request.args):
             date = request.args['date']
         else:
