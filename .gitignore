@@ -1,2 +1,3 @@
 *.pyc
 hitch.db
+.DS_Store
